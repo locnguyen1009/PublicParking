@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -20,18 +21,16 @@ public class GarageSpace {
         Garage garage = new Garage();
 
         while (true) {
-
             String command = sc.nextLine();
-            String nameCar;
+            String[] splitString = command.split(" ");
+            String nameCar = splitString[splitString.length-1];
+            splitString[0] = command.toLowerCase(Locale.ROOT);
             int slotNumber;
-
             if (command.equalsIgnoreCase("exit")){
                 System.out.println("Good bye");
                 break;
 
-            } else if (command.equalsIgnoreCase("Park car")){  //park car
-                System.out.println("What is your car license plate?");
-                nameCar = sc.nextLine();
+            } else if (splitString[0].startsWith("park") && splitString[splitString.length-1].endsWith(nameCar)){  //park car
                 slotNumber = garage.parkCar(nameCar);
                 if (slotNumber == -1){
                     System.out.println("No space in the Lot");
@@ -39,9 +38,8 @@ public class GarageSpace {
                     System.out.println("Car " + nameCar + " is parked.");
                 }
                 garage.show();
-            } else if (command.equalsIgnoreCase("retrieve car")){ //retrieve car
-                System.out.println("Give me your car license plate?");
-                nameCar = sc.nextLine();
+
+            } else if (splitString[0].startsWith("retrieve") && splitString[splitString.length-1].endsWith(nameCar)){ //retrieve car
                 garage.retrieveCar(nameCar);
                 garage.show();
 
@@ -49,7 +47,6 @@ public class GarageSpace {
                 System.out.println("Invalid Input. Please try again");
 
             }
-
         }
 
 
