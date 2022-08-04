@@ -34,22 +34,6 @@ public class GarageWithMultipleLevel {
 
             }
         }
-//        int slotNumber1 = g1.parkCar("c1");
-//        if (slotNumber1 == -1){
-//            System.out.println("no space in the lot");
-//        } else {
-//            System.out.println("Car "+ slotNumber1 +" is parked.");
-//        }
-//        g1.display();
-//
-//        int slotNumber2 = g1.parkCar("c2");
-//        if (slotNumber2 == -1){
-//            System.out.println("no space in the lot");
-//        } else {
-//            System.out.println("Car "+ slotNumber2 +" is parked.");
-//        }
-//        g1.display();
-
     }
 
     public static class GarageWithMultipleRows {
