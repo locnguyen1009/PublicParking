@@ -1,9 +1,7 @@
-import java.util.ArrayList;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.Scanner;
 
-public class GarageSpace {
+public class GarageWithOneLevel {
     public static void main(String[] args) {
         /**
          * split
@@ -13,34 +11,36 @@ public class GarageSpace {
          * endsWith
          * https://caveofprogramming.teachable.com/p/java-for-complete-beginners
          */
-
+        Garage g2 = new Garage(2);
+        g2.parkCar("c1");
+        g2.show();
 
         //whileloop for input info for car
         System.out.println("Welcome to my garage!");
         Scanner sc = new Scanner(System.in);
-        Garage garage = new Garage();
+        Garage garage = new Garage(10);
 
         while (true) {
             String command = sc.nextLine();
-            String[] splitString = command.split(" ");
-            String nameCar = splitString[splitString.length-1];
-            splitString[0] = command.toLowerCase(Locale.ROOT);
+            String[] splitString = command.split("\\s+");
+            String carID = splitString[splitString.length-1];
             int slotNumber;
+
             if (command.equalsIgnoreCase("exit")){
                 System.out.println("Good bye");
                 break;
 
-            } else if (splitString[0].startsWith("park") && splitString[splitString.length-1].endsWith(nameCar)){  //park car
-                slotNumber = garage.parkCar(nameCar);
+            } else if (splitString.length == 3 && splitString[0].equalsIgnoreCase("park") && splitString[1].equalsIgnoreCase("car") && splitString[splitString.length-1].endsWith(carID)){  //park car
+                slotNumber = garage.parkCar(carID);
                 if (slotNumber == -1){
                     System.out.println("No space in the Lot");
                 } else {
-                    System.out.println("Car " + nameCar + " is parked.");
+                    System.out.println("Car " + carID + " is parked.");
                 }
                 garage.show();
 
-            } else if (splitString[0].startsWith("retrieve") && splitString[splitString.length-1].endsWith(nameCar)){ //retrieve car
-                garage.retrieveCar(nameCar);
+            } else if (splitString[0].equalsIgnoreCase("retrieve") && splitString[1].equalsIgnoreCase("car") && splitString[splitString.length-1].endsWith(carID)){ //retrieve car
+                garage.retrieveCar(carID);
                 garage.show();
 
             } else { //invalid command
@@ -48,9 +48,6 @@ public class GarageSpace {
 
             }
         }
-
-
-
 
 
 /*      int slotNumber2 = g1.parkCar("C2");
@@ -71,12 +68,16 @@ public class GarageSpace {
         g1.show();
 
 */
-
+//[][]
     }
 
     public static class Garage {
-        String[] parkingSlots = new String[2];
+        String[] parkingSlots;
 
+        public Garage(int parkingSpace){
+            this.parkingSlots = new String[parkingSpace];
+
+        }
         public int parkCar (String car){
             int pos = 0;
             while (pos < parkingSlots.length && parkingSlots[pos] != null) {
@@ -125,7 +126,6 @@ public class GarageSpace {
                 }
             }
             System.out.println();
-
         }
     }
 }
