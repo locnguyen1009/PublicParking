@@ -11,9 +11,6 @@ public class GarageWithOneLevel {
          * endsWith
          * https://caveofprogramming.teachable.com/p/java-for-complete-beginners
          */
-        Garage g2 = new Garage(2);
-        g2.parkCar("c1");
-        g2.show();
 
         //whileloop for input info for car
         System.out.println("Welcome to my garage!");
@@ -35,7 +32,7 @@ public class GarageWithOneLevel {
                 if (slotNumber == -1){
                     System.out.println("No space in the Lot");
                 } else {
-                    System.out.println("Car " + carID + " is parked.");
+                    System.out.println("Car " + carID + " is parked at position " + slotNumber);
                 }
                 garage.show();
 
